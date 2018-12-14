@@ -1,3 +1,9 @@
+/*
+** Ca lista sa fie circulara
+** Ultimul nod trebuie sa aiba legatura cu primul nod
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -20,8 +20,17 @@ Nod* ConstructorNodStatic(int valoare){
 	return &n;
 }
 
+void StergereNod(Nod* nodulCurent){
+	Nod* nodDeSters = nodulCurent->urmatorul;
+	if(nodDeSters != NULL){
+		nodulCurent->urmatorul = nodDeSters->urmatorul;
+		free(nodDeSters);
+	}
+}
+
 void AdaugareNod(Nod* nodulCurent, int valoareDeAdaugat){
 	Nod* nodDeAdaugat = ConstructorNodDinamic(valoareDeAdaugat);
+	nodDeAdaugat->urmatorul = nodulCurent->urmatorul;
 	nodulCurent->urmatorul = nodDeAdaugat;
 }
 
@@ -54,5 +63,22 @@ void main(){
 		nodulCurent = NodulUrmator(nodulCurent);
 	}
 	printf("\nDONE\n");
+
+	printf("Al catelea nod se doreste a fi sters?\n");
+	int pozitie;
+	scanf("%d",&pozitie);
+	nodulCurent=inceputLista;
+	for(int i=1; i<pozitie-1;i++){
+		nodulCurent = NodulUrmator(nodulCurent);
+	}
+	StergereNod(nodulCurent);
+
+	printf("Afisare lista obtinuta:\n");
+	nodulCurent = inceputLista;
+
+	while(nodulCurent != NULL && nodulCurent->valoare!=-1){
+		printf("%d ", nodulCurent->valoare);
+		nodulCurent = NodulUrmator(nodulCurent);
+	}
 
 }
